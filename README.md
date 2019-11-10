@@ -1,2 +1,0 @@
-# SnowFinder
-find dat snow
