@@ -1,28 +1,20 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <Stats />
-  </div>
+  <v-app>
+      <Stats />
+  </v-app>
 </template>
 
 <script>
-import Stats from './components/Stats.vue'
+import Stats from './components/Stats';
 
 export default {
-  name: 'app',
-  components: {
-    Stats
-  }
-}
-</script>
+  name: 'App',
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  components: {
+    Stats,
+  },
+
+  data: () => ({
+  }),
+};
+</script>

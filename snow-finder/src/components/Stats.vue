@@ -5,13 +5,13 @@
       :items="results"
       class="elevation-1"
     >
-    <template slot="items" slot-scope="props">
-      <td>{{ props.item.name }}</td>
-      <td class="text-xs-right">{{ props.item.weather }}</td>
-      <td class="text-xs-right">{{ props.item.trails }}</td>
-      <td class="text-xs-right">{{ props.item.lifts }}</td>
-    </template>
-  </v-data-table>
+      <template slot="items" slot-scope="props">
+        <td>{{ props.item.name }}</td>
+        <td class="text-xs-right">{{ props.item.weather }}</td>
+        <td class="text-xs-right">{{ props.item.trails }}</td>
+        <td class="text-xs-right">{{ props.item.lifts }}</td>
+      </template>
+    </v-data-table>
   </div>
 </template>
 
@@ -24,6 +24,12 @@ export default {
   data() {
     return {
       results: [],
+      res: {
+        'name': '',
+        'weather': '',
+        'trails': '',
+        'lifts': ''
+      },
       headers:[
         { text: 'Name', value: 'name' },
         { text: 'Weather', value: 'weather' },
@@ -33,12 +39,14 @@ export default {
     };
   },
   created() {
-    this.craw();
+    this.crawl();
   },
   methods: {
-    craw() {
-      let res = {};
-      request("https://www.huntermtn.com", function(error, response, body) {
+    async crawl() {
+      this.results = [];
+      this.res['name'] = 'Hunter';
+      let self = this;
+      await request("https://www.huntermtn.com", function(error, response, body) {
         if (error) {
           console.log("Error: " + error);
         }
@@ -57,20 +65,18 @@ export default {
             .text()
             .trim();
 
-            console.log(label, val);
-            
             if (label === 'Trails') {
-              res['trails'] = val;
+              self.res['trails'] = val;
             } else if (label === 'Lifts') {
-              res['lifts'] = val;
+              self.res['lifts'] = val;
             } else {
-              res['weather'] = val;
+              self.res['weather'] = val;
             }
           });
         });
       });
-      this.results.push(res);
-      console.log(this.results);
+
+      this.results.push(this.res);
     }
   }
 };
