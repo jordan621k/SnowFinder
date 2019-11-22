@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <Map />
+    <Stats />
   </div>
 </template>
 
 <script>
-import Map from './components/Map.vue'
+import Stats from './components/Stats.vue'
 
 export default {
   name: 'app',
   components: {
-    Map
+    Stats
   }
 }
 </script>
