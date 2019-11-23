@@ -1,28 +1,20 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <Map />
-  </div>
+  <v-app>
+      <Stats />
+  </v-app>
 </template>
 
 <script>
-import Map from './components/Map.vue'
+import Stats from './components/Stats';
 
 export default {
-  name: 'app',
-  components: {
-    Map
-  }
-}
-</script>
+  name: 'App',
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  components: {
+    Stats,
+  },
+
+  data: () => ({
+  }),
+};
+</script>
