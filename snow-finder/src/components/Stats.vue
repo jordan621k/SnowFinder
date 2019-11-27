@@ -40,6 +40,7 @@ export default {
   },
   created() {
     this.crawl();
+    this.crawl2();
   },
   methods: {
     async crawl() {
@@ -73,6 +74,24 @@ export default {
               self.res['weather'] = val;
             }
           });
+        });
+      });
+
+      this.results.push(this.res);
+    },
+    async crawl2() {
+      this.results = [];
+      this.res['name'] = 'MountainCreek';
+      //let self = this;
+      await request("https://cors-anywhere.herokuapp.com/https://mountaincreek.com/mountainreport?fbclid=IwAR3AaVKGgFDDWmWDVG-ohUJyt0VEZBrlbhYR9_ZhcQDAqpnncWVGc2lOiHU", function(error, response, body) {
+        if (error) {
+          console.log("Error: " + error);
+        }
+        console.log("Status code: " + response.statusCode);
+        const $ = cheerio.load(body);
+        $("div.conditions-temp").each(function() {
+          let temp = $(this).text().trim();
+          console.log(temp);
         });
       });
 
