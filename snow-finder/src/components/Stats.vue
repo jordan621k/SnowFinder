@@ -82,23 +82,38 @@ export default {
     async crawl2() {
       this.results = [];
       this.res['name'] = 'MountainCreek';
-      //let self = this;
-      await request("https://cors-anywhere.herokuapp.com/https://mountaincreek.com/mountainreport?fbclid=IwAR3AaVKGgFDDWmWDVG-ohUJyt0VEZBrlbhYR9_ZhcQDAqpnncWVGc2lOiHU", function(error, response, body) {
+      let self = this;
+      await request("https://cors-anywhere.herokuapp.com/https://mountaincreek.com/mountainreport", function(error, response, body) {
         if (error) {
           console.log("Error: " + error);
         }
         console.log("Status code: " + response.statusCode);
         const $ = cheerio.load(body);
-        $("div.conditions-temp").each(function() {
-          let temp = $(this).text().trim();
-          console.log(temp);
+
+        let temp = $("div.condition.conditions-temp").text().trim()
+        //console.log(temp)
+        self.res['weather'] = temp
+
+        $("li.open_trail").each(function() {
+          let val = $(this)
+          .find("span.trail_lift_open")
+          .text()
+          .trim();
+          self.res['trails'] = val
+        });
+        $("li.open_lift").each(function() {
+          let val = $(this)
+          .find("span.trail_lift_open")
+          .text()
+          .trim();
+          self.res['lifts'] = val
         });
       });
 
       this.results.push(this.res);
-    }
+    },
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
