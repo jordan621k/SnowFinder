@@ -10,6 +10,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "core-js": "^3.3.2",
+    "leaflet": "^1.6.0",
     "request": "^2.88.0",
     "vue": "^2.6.10",
     "vuetify": "^2.1.11"
