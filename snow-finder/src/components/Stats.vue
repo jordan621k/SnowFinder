@@ -36,6 +36,7 @@ export default {
     this.results = [];
     this.hunter();
     this.creek();
+    this.camelback();
   },
   methods: {
     async hunter() {
@@ -98,6 +99,43 @@ export default {
           .text()
           .trim();
           res['lifts'] = val
+        });
+        self.results.push(res);
+      });
+    },
+    async camelback() {
+      let res = {};
+      let self = this;
+      res['name'] = 'Camelback';
+      await request("https://www.skicamelback.com/?webSyncID=b9634ad6-655e-8582-056c-620160ade9b6&sessionGUID=d186743c-6b1b-4204-aea1-3208034641d2", function(error, response, body) {
+        if (error) {
+          console.log("Error: " + error);
+        }
+        const $ = cheerio.load(body);
+
+        let temp = $("span.integer m-").text().trim();
+        res['weather'] = temp
+
+        $("div.conditions-widget").each(function() {
+          $(this).find("div.measurement").each(function() {
+            let label = $(this)
+            .find("h6")
+            .text()
+            .trim();
+
+            let val = $(this)
+            .find("data")
+            .text()
+            .trim();
+
+            if (label === 'Trails Open') {
+              res['trails'] = val;
+            } else if (label === 'Lifts Open') {
+              res['lifts'] = val;
+            } else {
+              res['weather'] = val;
+            }
+          });
         });
         self.results.push(res);
       });
