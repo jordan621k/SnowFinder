@@ -1,7 +1,8 @@
 <template>
   <v-app>
-      <Stats />
-      <Map />
+    <img src="./assets/title.png">
+    <Stats />
+    <Map />
   </v-app>
 </template>
 
@@ -20,3 +21,9 @@ export default {
   }),
 };
 </script>
+<style scoped>
+img {
+  width: 300px;
+  height: 150px;
+}
+</style>
