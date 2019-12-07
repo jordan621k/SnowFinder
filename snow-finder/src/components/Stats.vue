@@ -24,13 +24,7 @@ export default {
   data() {
     return {
       results: [],
-      res: {
-        'name': '',
-        'weather': '',
-        'trails': '',
-        'lifts': ''
-      },
-      headers:[
+      headers: [
         { text: 'Name', value: 'name' },
         { text: 'Weather', value: 'weather' },
         { text: 'Trails', value: 'trails' },
@@ -39,19 +33,19 @@ export default {
     };
   },
   created() {
-    this.crawl();
-    this.crawl2();
+    this.results = [];
+    this.hunter();
+    this.creek();
   },
   methods: {
-    async crawl() {
-      this.results = [];
-      this.res['name'] = 'Hunter';
+    async hunter() {
+      let res = {};
+      res['name'] = 'Hunter';
       let self = this;
       await request("https://www.huntermtn.com", function(error, response, body) {
         if (error) {
           console.log("Error: " + error);
         }
-        console.log("Status code: " + response.statusCode);
         const $ = cheerio.load(body);
 
         $("div.hm-conditionsWidget_preview").each(function() {
@@ -67,50 +61,46 @@ export default {
             .trim();
 
             if (label === 'Trails') {
-              self.res['trails'] = val;
+              res['trails'] = val;
             } else if (label === 'Lifts') {
-              self.res['lifts'] = val;
+              res['lifts'] = val;
             } else {
-              self.res['weather'] = val;
+              res['weather'] = val;
             }
           });
         });
+        self.results.push(res);
       });
-
-      this.results.push(this.res);
     },
-    async crawl2() {
-      this.results = [];
-      this.res['name'] = 'MountainCreek';
+    async creek() {
+      let res = {};
       let self = this;
+      res['name'] = 'MountainCreek';
       await request("https://cors-anywhere.herokuapp.com/https://mountaincreek.com/mountainreport", function(error, response, body) {
         if (error) {
           console.log("Error: " + error);
         }
-        console.log("Status code: " + response.statusCode);
         const $ = cheerio.load(body);
 
         let temp = $("div.condition.conditions-temp").text().trim()
-        //console.log(temp)
-        self.res['weather'] = temp
+        res['weather'] = temp
 
         $("li.open_trail").each(function() {
           let val = $(this)
           .find("span.trail_lift_open")
           .text()
           .trim();
-          self.res['trails'] = val
+          res['trails'] = val
         });
         $("li.open_lift").each(function() {
           let val = $(this)
           .find("span.trail_lift_open")
           .text()
           .trim();
-          self.res['lifts'] = val
+          res['lifts'] = val
         });
+        self.results.push(res);
       });
-
-      this.results.push(this.res);
     },
   }
 }
