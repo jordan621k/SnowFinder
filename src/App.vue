@@ -2,7 +2,6 @@
   <v-app>
     <img src="./assets/title.png">
     <Stats />
-    <Map />
   </v-app>
 </template>
 
