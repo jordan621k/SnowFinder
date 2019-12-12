@@ -27,7 +27,15 @@ export default {
         }).addTo(map);
 
         L.marker([42.204518, -74.210525]).addTo(map)
-          .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+          .bindPopup('Hunter Mt')
+          .openPopup();
+        
+        L.marker([41.17878,-74.53104]).addTo(map)
+          .bindPopup('Mt Creek')
+          .openPopup();
+        
+        L.marker([41.053379,-75.354263]).addTo(map)
+          .bindPopup('Camalback')
           .openPopup();
       }
     }
@@ -36,6 +44,7 @@ export default {
 
 <style scoped>
 #map {
+  position: absolute;
   width: 100%;
   height: 100%;
 }

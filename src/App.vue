@@ -7,13 +7,14 @@
 
 <script>
 import Stats from './components/Stats';
-import Map from './components/Map';
+//import Map from './components/Map';
+
 export default {
   name: 'App',
 
   components: {
     Stats,
-    Map
+    //Map
   },
 
   data: () => ({

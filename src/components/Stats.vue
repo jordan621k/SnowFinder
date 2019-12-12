@@ -10,17 +10,30 @@
         <td class="text-xs-right">{{ props.item.weather }}</td>
         <td class="text-xs-right">{{ props.item.trails }}</td>
         <td class="text-xs-right">{{ props.item.lifts }}</td>
+        <v-header></v-header>
+        <v-button :onClick="alertClick">Alert</v-button>
       </template>
     </v-data-table>
+    <v-Map>
+    </v-Map>
   </div>
 </template>
 
 <script>
 import request from 'request';
 import cheerio from 'cheerio';
+import Map from './Map';
+import Header from './Header'
+import Button from './Button'
+
 
 export default {
   name: "Stats",
+  components: {
+    'v-Map': Map,
+    'v-header': Header,
+    'v-button': Button
+  },
   data() {
     return {
       results: [],
@@ -29,6 +42,7 @@ export default {
         { text: 'Weather', value: 'weather' },
         { text: 'Trails', value: 'trails' },
         { text: 'Lifts', value: 'lifts' },
+        { text: 'SeeWhere', value: 'v-button' },
       ]
     };
   },
@@ -39,6 +53,7 @@ export default {
     this.camelback();
   },
   methods: {
+    
     async hunter() {
       let res = {};
       res['name'] = 'Hunter';
