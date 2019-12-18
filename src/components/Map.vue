@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     initMap() {
-        let map = L.map(this.$refs['mapElement']).setView([42.204518, -74.210525], 13);
+        let map = L.map(this.$refs['mapElement']).setView([41.17878, -74.53104], 7);
         L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
           attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>',
           minZoom: 1,
@@ -45,7 +45,7 @@ export default {
 <style scoped>
 #map {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
 }
 </style>
