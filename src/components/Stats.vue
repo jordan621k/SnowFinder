@@ -1,6 +1,5 @@
 <template>
   <div>
-    <v-btn class="pink white--text" v-on:click="GiveAdvice">GO!</v-btn>
     <v-data-table
       :headers="headers"
       :items="results"
