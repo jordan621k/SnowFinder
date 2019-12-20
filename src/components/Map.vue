@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn class="pink white--text" @click="HunterMtview" large>GO!</v-btn>
+    <v-btn class="pink white--text" @click="HunterMtview">GO!</v-btn>
     <div id="map" ref="mapElement">
     </div>
   </div>
@@ -51,10 +51,16 @@ export default {
       L.marker([41.053379,-75.354263]).addTo(map)
         .bindPopup('Camalback')
         .openPopup();
+      //L.marker([42.204518, -75.210525]).addTo(map)
+        //.bindPopup('jordan')
+        //.openPopup();
     },
     HunterMtview() {
-      console.log("xxx")
-      L.map(this.$refs['mapElement']).setView([42.204518, -74.210525], 13);
+      //console.log("xxx")
+      //this.Map = L.setView([42.204518, -74.210525], 13)
+      L.marker([42.204518, -75.210525]).addTo(this.initMap)
+        .bindPopup('jordan')
+        .openPopup();
     }
   }
 }
