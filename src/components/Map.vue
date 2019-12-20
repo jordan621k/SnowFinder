@@ -45,9 +45,11 @@ export default {
         .openPopup();
     },
     HunterMtview() {
+      this.map.removeLayer([42.204518, -75.210525]);
       L.marker([42.204518, -75.210525]).addTo(this.map)
         .bindPopup('jordan')
         .openPopup();
+      this.map.flyTo([42.204518, -75.210525], 14);
     }
   }
 }
