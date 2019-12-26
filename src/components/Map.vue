@@ -42,11 +42,11 @@ export default {
         minZoom: 1,
         maxZoom: 19
       }).addTo(this.map);
-      var huntermtmarker = L.marker(this.huntermtll,{title:"marker_hunter"}).addTo(this.map).bindPopup('Hunter Mt')
+      let huntermtmarker = L.marker(this.huntermtll,{title:"marker_hunter"}).addTo(this.map).bindPopup('Hunter Mt')
       this.markers.push(huntermtmarker)
-      var mtcreekmarker = L.marker(this.mtcreekll,{title:"marker_creek"}).addTo(this.map).bindPopup('Mt Creek')
+      let mtcreekmarker = L.marker(this.mtcreekll,{title:"marker_creek"}).addTo(this.map).bindPopup('Mt Creek')
       this.markers.push(mtcreekmarker)
-      var Camelbackmarker = L.marker(this.camalbackll,{title:"marker_camel"}).addTo(this.map).bindPopup('Camelback')
+      let Camelbackmarker = L.marker(this.camalbackll,{title:"marker_camel"}).addTo(this.map).bindPopup('Camelback')
       this.markers.push(Camelbackmarker)
     },
     Homeview() {
@@ -54,8 +54,8 @@ export default {
     },
     HunterMtview() {
       this.map.flyTo(this.huntermtll, this.flyzoom)
-      for (var i in this.markers){
-        var markerID = this.markers[i].options.title
+      for (let i in this.markers){
+        let markerID = this.markers[i].options.title
         if (markerID == "marker_hunter"){
             this.markers[i].openPopup()
         }
@@ -63,8 +63,8 @@ export default {
     },
     MtCreekview() {
       this.map.flyTo(this.mtcreekll, this.flyzoom)
-      for (var i in this.markers){
-        var markerID = this.markers[i].options.title
+      for (let i in this.markers){
+        let markerID = this.markers[i].options.title
         if (markerID == "marker_creek"){
             this.markers[i].openPopup()
         }
@@ -72,8 +72,8 @@ export default {
     },
     CamalBackview() {
       this.map.flyTo(this.camalbackll, this.flyzoom)
-      for (var i in this.markers){
-        var markerID = this.markers[i].options.title
+      for (let i in this.markers){
+        let markerID = this.markers[i].options.title
         if (markerID == "marker_camel"){
             this.markers[i].openPopup()
         }
