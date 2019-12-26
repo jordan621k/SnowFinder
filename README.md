@@ -1,4 +1,5 @@
 # snow-finder
+[Launch Here](https://jordan621k.github.io/SnowFinder/)
 
 ## deploy to GitHub.io
 1) Find and open the file `.gitignore` located in root directory of your project. Next, find and comment the line which has the text `/dist`.
