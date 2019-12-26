@@ -4,7 +4,6 @@
     <v-btn class="pink white--text" @click="HunterMtview">GO hunter!</v-btn>
     <v-btn class="pink white--text" @click="MtCreekview">GO Mtcreek!</v-btn>
     <v-btn class="pink white--text" @click="CamalBackview">GO Camalback!</v-btn>
-    <v-btn class="pink white--text" @click="Camalpop">Camalback! pop up</v-btn>
     <div id="map" ref="mapElement">
     </div>
   </div>
@@ -31,6 +30,7 @@ export default {
     };
   },
   created() {
+    this.markers = []
   },
   watch: {
   },
@@ -42,34 +42,42 @@ export default {
         minZoom: 1,
         maxZoom: 19
       }).addTo(this.map);
-      var markers = []
-      var huntermtmarker = L.marker(this.huntermtll).addTo(this.map).bindPopup('Hunter Mt')
-      markers.push(huntermtmarker)
-        //.openPopup();
-      
-      L.marker(this.mtcreekll).addTo(this.map)
-        .bindPopup('Mt Creek')
-        //.openPopup();
-      
-      L.marker(this.camalbackll).addTo(this.map)
-        .bindPopup('Camalback')
-        //.openPopup();
+      var huntermtmarker = L.marker(this.huntermtll,{title:"marker_hunter"}).addTo(this.map).bindPopup('Hunter Mt')
+      this.markers.push(huntermtmarker)
+      var mtcreekmarker = L.marker(this.mtcreekll,{title:"marker_creek"}).addTo(this.map).bindPopup('Mt Creek')
+      this.markers.push(mtcreekmarker)
+      var Camelbackmarker = L.marker(this.camalbackll,{title:"marker_camel"}).addTo(this.map).bindPopup('Camelback')
+      this.markers.push(Camelbackmarker)
     },
     Homeview() {
       this.map.flyTo(this.homeviewll, this.homezoom)
     },
     HunterMtview() {
       this.map.flyTo(this.huntermtll, this.flyzoom)
+      for (var i in this.markers){
+        var markerID = this.markers[i].options.title
+        if (markerID == "marker_hunter"){
+            this.markers[i].openPopup()
+        }
+      }
     },
     MtCreekview() {
       this.map.flyTo(this.mtcreekll, this.flyzoom)
+      for (var i in this.markers){
+        var markerID = this.markers[i].options.title
+        if (markerID == "marker_creek"){
+            this.markers[i].openPopup()
+        }
+      }
     },
     CamalBackview() {
       this.map.flyTo(this.camalbackll, this.flyzoom)
-    },
-    Camalpop() {
-      console.log(this.initMap.markers)
-      this.markers[this.huntermtmarker].openPopup();
+      for (var i in this.markers){
+        var markerID = this.markers[i].options.title
+        if (markerID == "marker_camel"){
+            this.markers[i].openPopup()
+        }
+      }
     },
   }
 }
