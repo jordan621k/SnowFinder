@@ -10,6 +10,8 @@ NOTE: this folder it’s ignored by default that’s why we have to comment it.
 - Run the command: `git add dist && git commit -m "Initial dist subtree commit"`
 - Run the command: `git subtree push --prefix dist origin gh-pages`
 
+**Force Push** git push origin `git subtree split --prefix dist master`:gh-pages --force
+
 ## Project setup
 ```
 npm install
